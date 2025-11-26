@@ -1,15 +1,15 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
-import MenuImg from "@/public/images/menues.jpg";
+import MenuImg from "@/public/images/manage-menus.jpg";
 
 const Menus = () => {
   return (
     <div>
       <PageHeader
         image={MenuImg}
-        title={"Our Menus"}
+        title={"Manage Menus"}
         desc={
-          "Our menu features fresh, seasonal ingredients, expertly crafted dishes, and customizable options to suit any event."
+          "Our Team Our team of culinary experts delivers exceptional service and unforgettable experiences for every event."
         }
       />
     </div>

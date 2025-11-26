@@ -12,6 +12,8 @@ const navLinks = [
   { name: "Chefs", path: "/chefs" },
   { name: "Login", path: "/login" },
   { name: "Register", path: "/register" },
+  { name: "Add menus", path: "/add-menus" },
+  { name: "Manage Menus", path: "/manage-menus" },
 ];
 
 const Navbar = () => {
