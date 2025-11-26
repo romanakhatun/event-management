@@ -1,8 +1,8 @@
-import React from "react";
-import PageHeader from "../components/PageHeader";
+import TopicImage from "@/public/footer-2.jpg";
 import MenuImg from "@/public/images/menues.jpg";
 import MenuCard from "../components/MenuCard";
-import TopicImage from "@/public/footer-2.jpg";
+import PageHeader from "../components/PageHeader";
+import DBConnect from "../lib/dbConnection";
 
 const dummyMenuItems = [
   {
@@ -51,7 +51,13 @@ const dummyMenuItems = [
   },
 ];
 
-const Menus = () => {
+const Menus = async () => {
+  const data = await DBConnect("menus").find({}).limit(6).toArray();
+  const menus = data.map((menu) => ({
+    ...menu,
+    _id: menu._id.toString(),
+  }));
+
   return (
     <div>
       <PageHeader
@@ -64,8 +70,8 @@ const Menus = () => {
 
       <div className="container mx-auto px-4 md:px-0 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {dummyMenuItems.map((menu) => (
-            <MenuCard key={menu.id} menu={menu} />
+          {menus.map((menu) => (
+            <MenuCard key={menu._id} menu={menu} />
           ))}
         </div>
       </div>

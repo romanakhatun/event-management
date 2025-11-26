@@ -1,7 +1,7 @@
 import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
 import AuthProvider from "./components/AuthProvider";
 
 // Configure Fraunces for display/headings (often used as serif/display)
