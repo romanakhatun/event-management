@@ -5,18 +5,23 @@ import { TfiClose } from "react-icons/tfi";
 import Image from "next/image";
 import DisEventLogo from "@/public/dishvent.png";
 import ActiveLink from "./ActiveLink";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Menus", path: "/menus" },
   { name: "Chefs", path: "/chefs" },
-  { name: "Login", path: "/login" },
-  { name: "Register", path: "/register" },
+  // { name: "Login", path: "/login" },
+  // { name: "Register", path: "/register" },
+];
+const userLinks = [
   { name: "Add menus", path: "/add-menus" },
   { name: "Manage Menus", path: "/manage-menus" },
 ];
 
 const Navbar = () => {
+  const { data: session } = useSession();
   const [open, setOpen] = useState(false);
 
   return (
@@ -31,6 +36,26 @@ const Navbar = () => {
               {nav.name}
             </ActiveLink>
           ))}
+
+          {session ? (
+            <>
+              {userLinks.map((nav, i) => (
+                <ActiveLink key={i} href={nav.path}>
+                  {nav.name}
+                </ActiveLink>
+              ))}
+              <button
+                className="auth-btn cursor-pointer"
+                onClick={() => signOut()}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link href={"/login"} className="auth-btn">
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile Button */}

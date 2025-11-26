@@ -2,6 +2,7 @@ import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import AuthProvider from "./components/AuthProvider";
 
 // Configure Fraunces for display/headings (often used as serif/display)
 const fraunces = Fraunces({
@@ -29,9 +30,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${dmSans.variable} ${fraunces.variable} font-sans antialiased`}
       >
-        <Navbar />
-        <main className="h-screen">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

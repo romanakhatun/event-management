@@ -1,8 +1,21 @@
+"use client";
 import React from "react";
 import PageHeader from "../components/PageHeader";
 import MenuImg from "@/public/images/add-menus.jpg";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Menus = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") return <p>Loading...</p>;
+
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
+
   return (
     <div>
       <PageHeader

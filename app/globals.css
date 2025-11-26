@@ -51,4 +51,7 @@ body {
   .social-icon {
     @apply w-9 h-9 flex items-center text-white border border-white justify-center rounded-full hover:bg-secondary;
   }
+  .auth-btn {
+    @apply bg-secondary rounded-full px-5 py-1.5 font-semibold text-sm hover:text-black hover:bg-primary;
+  }
 }
