@@ -5,7 +5,7 @@ import { TfiClose } from "react-icons/tfi";
 import Image from "next/image";
 import DisEventLogo from "@/public/dishvent.png";
 import ActiveLink from "./ActiveLink";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 const navLinks = [
@@ -91,6 +91,34 @@ const Navbar = () => {
                 {nav.name}
               </ActiveLink>
             ))}
+
+            {session ? (
+              <>
+                {userLinks.map((nav, i) => (
+                  <ActiveLink
+                    key={i}
+                    href={nav.path}
+                    onClick={() => setOpen(false)}
+                  >
+                    {nav.name}
+                  </ActiveLink>
+                ))}
+                <button
+                  className="auth-btn cursor-pointer"
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                href={"/login"}
+                onClick={() => setOpen(false)}
+                className="auth-btn"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}
