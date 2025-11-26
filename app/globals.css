@@ -2,24 +2,16 @@
 @plugin "daisyui" {
   themes: light --default;
 }
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-dm-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #77bb77; /* Green */
+  --color-primary-content: #c4ff88;
+  --color-secondary: #ff7438; /* komla */
+  --color-secondary-content: #f9f3e7;
+  --color-neutral: #0e0d0c; /* Dark Black*/
+  --color-base-100: #ffffffb3;
+  --color-base-content: #0e0d0cb3; /* paraph*/
 }
 
 body {
@@ -28,4 +20,35 @@ body {
 
 .font-fraunces {
   font-family: var(--font-fraunces), serif;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-secondary hover:text-black text-lg px-8 py-3.5 rounded-full shadow-none transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-primary-content text-[15px] text-base-content border border-black px-12 py-2 rounded-xl hover:bg-white shadow-none transition-all duration-200 cursor-pointer;
+}
+
+/* Common Style */
+@layer components {
+  .footer-heading {
+    @apply text-[20px] font-medium mb-2 text-white;
+  }
+
+  .section-heading {
+    @apply text-6xl font-medium text-center mb-5;
+  }
+
+  .section-text {
+    @apply text-gray-600 leading-relaxed max-w-3xl mx-auto text-center;
+  }
+
+  .card-common {
+    @apply bg-base-100 rounded-xl shadow-[0px_0px_30px_0px_rgba(35,2,39,0.11)] p-8 pb-8 transition-all duration-500;
+  }
+
+  .social-icon {
+    @apply w-9 h-9 flex items-center text-white border border-white justify-center rounded-full hover:bg-secondary;
+  }
 }
