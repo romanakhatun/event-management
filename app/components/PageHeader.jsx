@@ -1,7 +1,7 @@
 const PageHeader = ({ image, title, desc }) => {
   return (
     <div
-      className="min-h-[60vh] bg-center bg-cover flex items-center justify-start text-white"
+      className="min-h-[40vh] md:min-h-[60vh] bg-center bg-cover flex items-center justify-start text-white"
       style={{
         backgroundImage: `url(${image.src})`,
       }}

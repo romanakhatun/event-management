@@ -5,19 +5,22 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import FormInput from "../components/FormInput";
 import PageHeader from "../components/PageHeader";
+import toast from "react-hot-toast";
 
 const Menus = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  const [menu, setMenu] = useState({
+  const initialMenuState = {
     title: "",
     shortDescription: "",
     fullDescription: "",
     price: "",
     preparationTime: "",
     imageUrl: "",
-  });
+  };
+
+  const [menu, setMenu] = useState(initialMenuState);
 
   const handleChange = (e) => {
     setMenu({
@@ -39,12 +42,17 @@ const Menus = () => {
       });
       const result = await response.json();
       if (!response.ok) {
+        toast.error(result.message || "Something went wrong");
         console.log(result);
         return;
       }
-      console.log("Success:", result);
+      toast.success("Menu added successfully!");
+      // reset form
+      setMenu(initialMenuState);
+      // console.log("Success:", result);
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Server error. Please try again");
+      // console.error("Error:", error);
     }
   };
 

@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import AuthProvider from "./components/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 // Fraunces for display/headings
 const fraunces = Fraunces({
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <Navbar />
           <main className="min-h-screen">{children}</main>
+          <Toaster position="top-right" duration={5000} />
           <Footer />
         </AuthProvider>
       </body>

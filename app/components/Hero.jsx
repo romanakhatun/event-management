@@ -7,7 +7,7 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <div
-      className="min-h-[120vh] bg-center bg-cover flex items-center justify-center text-white"
+      className="min-h-[60vh] md:min-h-[120vh] bg-center bg-cover flex items-center justify-center text-white"
       style={{
         backgroundImage: `url(${OverlayImg.src}), url(${HeroBg.src})`,
         backgroundBlendMode: "overlay",
