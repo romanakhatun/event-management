@@ -10,12 +10,6 @@ const Menus = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (status === "loading") return <p>Loading...</p>;
-
-  if (!session) {
-    router.push("/login");
-    return null;
-  }
   const [menu, setMenu] = useState({
     title: "",
     shortDescription: "",
@@ -54,19 +48,41 @@ const Menus = () => {
     }
   };
 
-  const { title, shortDescription, fullDescription, price, imageUrl, preparationTime } = menu;
+  const {
+    title,
+    shortDescription,
+    fullDescription,
+    price,
+    imageUrl,
+    preparationTime,
+  } = menu;
+
+  if (status === "loading") return <p>Loading...</p>;
+
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
+
   return (
     <div>
       <PageHeader
         image={MenuImg}
         title={"Add New Menu Item"}
-        desc={"Use this form to add a delicious new item to your digital menu, complete with details and pricing."}
+        desc={
+          "Use this form to add a delicious new item to your digital menu, complete with details and pricing."
+        }
       />
-      <form className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg" onSubmit={handleSubmit}>
-        <h3 className="font-serif text-3xl text-base-content font-medium mb-6 border-b pb-3">Recipe Details</h3>
+      <form
+        className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg"
+        onSubmit={handleSubmit}
+      >
+        <h3 className="font-serif text-3xl text-base-content font-medium mb-6 border-b pb-3">
+          Recipe Details
+        </h3>
 
         <div className="space-y-6 mb-6">
-          {/* 1. Title */}
+          {/* Title */}
           <FormInput
             label="Menu Title"
             type="text"
@@ -77,7 +93,7 @@ const Menus = () => {
             placeholder="e.g., Signature Seafood Paella"
           />
 
-          {/* 2. Short Description */}
+          {/* Short Description */}
           <FormInput
             label="Short Description"
             type="text"
@@ -88,9 +104,12 @@ const Menus = () => {
             placeholder="A concise, enticing summary (e.g., Saffron rice with mussels and prawns)"
           />
 
-          {/* 3. Full Description (Textarea) */}
+          {/* 3. Full Description */}
           <div>
-            <label htmlFor="fullDescription" className="label text-sm font-semibold">
+            <label
+              htmlFor="fullDescription"
+              className="label text-sm font-semibold"
+            >
               Full Description <span className="text-red-500">*</span>
             </label>
             <textarea
@@ -105,7 +124,7 @@ const Menus = () => {
             ></textarea>
           </div>
 
-          {/* 4. Price & Preparation Time (Two fields in a row) */}
+          {/* Price & Preparation Time */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Price */}
             <FormInput
@@ -118,7 +137,7 @@ const Menus = () => {
               value={price}
             />
 
-            {/* Preparation Time (Relevant Field) */}
+            {/* Preparation Time */}
             <FormInput
               label="Preparation Time"
               type="text"
@@ -130,12 +149,13 @@ const Menus = () => {
             />
           </div>
 
-          {/* 5. Optional Image URL */}
+          {/* Optional Image URL */}
           <FormInput
             label="Image URL (Optional)"
             type="url"
             name="imageUrl"
             required={false}
+            isRequired={false}
             handleChange={handleChange}
             value={imageUrl}
             placeholder="Paste a direct link to the menu image here"
@@ -143,7 +163,10 @@ const Menus = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-primary w-full text-white text-lg mt-4">
+        <button
+          type="submit"
+          className="btn-primary cursor-pointer w-full text-white text-lg mt-4"
+        >
           Add Menu Item
         </button>
       </form>

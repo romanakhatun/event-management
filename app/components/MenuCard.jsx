@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import PlaceholderImg from "@/public/images/placeholder.jpg";
 
 const MenuCard = ({ menu }) => {
   return (
@@ -7,28 +8,40 @@ const MenuCard = ({ menu }) => {
       {/* Menu Image */}
       <div className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]">
         <Image
-          src={menu.imageUrl || "/images/placeholder-food.jpg"}
+          src={menu.imageUrl || PlaceholderImg.src}
           alt={menu.title}
           layout="fill"
           objectFit="cover"
           className="transition-opacity duration-300 hover:opacity-90"
         />
       </div>
-      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+      <div className="p-4 sm:p-6 flex flex-col grow">
         {/* Menu Title */}
-        <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-2">{menu.title}</h3>
+        <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-2">
+          {menu.title}
+        </h3>
 
         {/* Short Description */}
-        <p className="text-gray-600 text-sm mb-3 flex-grow">{menu.shortDescription}</p>
+        <p className="text-gray-600 text-sm mb-3 fgrow">
+          {menu.shortDescription}
+        </p>
 
-        {/* Price & Prep Time - Flex layout for alignment */}
+        {/* Price & Prep Time */}
         <div className="flex justify-between items-center mb-4 pt-2 border-t border-gray-100">
-          <p className="font-bold text-lg text-primary">${parseInt(menu.price).toFixed(2)}</p>
-          <p className="text-sm text-gray-500">Prep Time: {menu.preparationTime}</p>
+          <p className="font-bold text-lg text-primary">
+            ${parseInt(menu.price).toFixed(2)}
+          </p>
+          <p className="text-sm text-gray-500">
+            Prep Time: {menu.preparationTime}
+          </p>
         </div>
 
         {/*Full Description Button */}
-        <Link href={`/menus/${menu._id}`} to="/" className="btn-secondary btn-sm mt-auto">
+        <Link
+          href={`/menus/${menu._id}`}
+          to="/"
+          className="btn-secondary btn-sm mt-auto text-center"
+        >
           View Details
         </Link>
       </div>

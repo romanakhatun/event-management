@@ -27,7 +27,9 @@ const Navbar = () => {
   return (
     <div className="absolute text-white pt-6 top-0 left-0 w-full z-50">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Image src={DisEventLogo} alt="LOGO" className="w-28" />
+        <Link href="/">
+          <Image src={DisEventLogo} alt="LOGO" className="w-28" />
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex bg-[#2D2C2B] rounded-full px-6 py-2 items-center gap-6">
