@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import AuthProvider from "./components/AuthProvider";
 
-// Configure Fraunces for display/headings (often used as serif/display)
+// Fraunces for display/headings
 const fraunces = Fraunces({
   weight: ["400", "700"],
   style: ["normal", "italic"],
@@ -12,7 +12,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
 });
 
-// Configure DM Sans for body/primary text (often used as sans-serif)
+// DM Sans for body/primary text
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   variable: "--font-dm-sans",
