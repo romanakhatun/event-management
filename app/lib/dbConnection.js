@@ -1,16 +1,27 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-function DBConnect(collectionName) {
-  const uri = process.env.MONGODB_URI;
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
+const uri = process.env.MONGODB_URI;
 
-  return client.db(process.env.DB_NAME).collection(collectionName);
+let cachedClient = null;
+let cachedDb = null;
+
+async function DBConnect(collectionName) {
+  if (!cachedClient || !cachedDb) {
+    const client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+
+    cachedClient = await client.connect();
+    cachedDb = cachedClient.db(process.env.DB_NAME);
+
+    console.log("📌 New MongoDB connection created");
+  }
+
+  return cachedDb.collection(collectionName);
 }
 
 export default DBConnect;
