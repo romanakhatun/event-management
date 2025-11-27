@@ -37,9 +37,24 @@ export async function PUT(req) {
   }
 }
 
-// export async function DELETE(req) {
+export async function DELETE(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
 
-// }
+    if (!id) {
+      return Response.json({ success: false, message: "id is required" }, { status: 400 });
+    }
+    if (!ObjectId.isValid(id)) {
+      return Response.json({ success: false, message: "invalid id" }, { status: 400 });
+    }
+
+    const result = await DBConnect("menus").deleteOne({ _id: new ObjectId(id) });
+    return Response.json({ success: true, result });
+  } catch (err) {
+    return Response.json({ success: false, message: err.message }, { status: 500 });
+  }
+}
 
 export async function GET() {
   try {

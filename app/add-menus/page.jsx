@@ -38,7 +38,7 @@ const Menus = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(menu),
+        body: JSON.stringify({ ...menu, email: session.user.email }),
       });
       const result = await response.json();
       if (!response.ok) {
