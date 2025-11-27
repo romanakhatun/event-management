@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import MenuImg from "@/public/images/menues.jpg";
 import MenuCard from "../components/MenuCard";
 import PageHeader from "../components/PageHeader";
