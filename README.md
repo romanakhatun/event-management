@@ -27,7 +27,7 @@ The application focuses on a **secure-first approach** with NextAuth and provide
 
 ## Screenshot
 
-![DISHVENT Screenshot](./disvent.png)
+![DISHVENT Screenshot](./event-management.png)
 
 ## 🛠️ Tech Stack
 
